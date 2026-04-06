@@ -4,146 +4,106 @@ import { Store } from "@/lib/types";
 import { useCartContext } from "@/lib/CartContext";
 import QtyControl from "@/components/ui/QtyControl";
 import Icon from "@/components/ui/Icon";
-import { up } from "@/lib/breakpoints";
 
-const slideUp = keyframes`from{transform:translateY(100%)}to{transform:translateY(0)}`;
+const slideIn = keyframes`from{transform:translateX(100%)}to{transform:translateX(0)}`;
 const fadeIn  = keyframes`from{opacity:0}to{opacity:1}`;
 
 const Overlay = styled.div<{ $open: boolean }>`
   display: ${({ $open }) => ($open ? "block" : "none")};
-  position: fixed; inset: 0;
-  background: rgba(0,0,0,.45); z-index: 200;
+  position: fixed; inset: 0; background: rgba(0,0,0,.35); z-index: 200;
   animation: ${fadeIn} .18s ease;
 `;
 
 const Drawer = styled.div<{ $open: boolean }>`
   display: ${({ $open }) => ($open ? "flex" : "none")};
   flex-direction: column;
-  position: fixed; bottom: 0; left: 0; right: 0;
-  /* respect safe area on iOS notch phones */
-  padding-bottom: env(safe-area-inset-bottom, 0px);
-  /* cap height so content is always reachable */
-  max-height: 90vh;
+  position: fixed; top: 0; right: 0; bottom: 0;
+  width: 380px;
   background: ${({ theme }) => theme.colors.surface};
-  border-radius: 20px 20px 0 0;
+  border-left: 1px solid ${({ theme }) => theme.colors.border};
   z-index: 201;
-  animation: ${slideUp} .26s cubic-bezier(.32,.72,0,1);
-
-  /* on tablet/desktop center and give max width */
-  ${up.md} {
-    left: 50%; right: auto;
-    transform: translateX(-50%);
-    width: 100%; max-width: 480px;
-    border-radius: 20px 20px 0 0;
-  }
-`;
-
-const Handle = styled.div`
-  width: 36px; height: 4px;
-  background: ${({ theme }) => theme.colors.border2};
-  border-radius: 2px; margin: 10px auto 0; flex-shrink: 0;
+  animation: ${slideIn} .26s cubic-bezier(.32,.72,0,1);
 `;
 
 const Header = styled.div`
   display: flex; align-items: center; justify-content: space-between;
-  padding: .875rem 1.25rem;
+  padding: 1.25rem 1.5rem;
   border-bottom: 1px solid ${({ theme }) => theme.colors.border};
   flex-shrink: 0;
 `;
 
-const HeaderTitle = styled.h2`
+const Title = styled.h2`
   font-family: ${({ theme }) => theme.fonts.display};
-  font-size: 16px; font-weight: 700;
+  font-size: 17px; font-weight: 700;
 `;
 
 const CloseBtn = styled.button`
-  /* 44px tap target */
-  width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;
-  color: ${({ theme }) => theme.colors.muted};
+  width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
   border-radius: ${({ theme }) => theme.radii.md};
-  &:hover { color: ${({ theme }) => theme.colors.ink}; background: ${({ theme }) => theme.colors.surface2}; }
+  color: ${({ theme }) => theme.colors.muted};
+  &:hover { background: ${({ theme }) => theme.colors.surface2}; color: ${({ theme }) => theme.colors.ink}; }
 `;
 
-const ItemsWrap = styled.div`
-  flex: 1; overflow-y: auto; padding: .25rem 0;
-  overscroll-behavior: contain;
-  -webkit-overflow-scrolling: touch;
-`;
+const ItemsWrap = styled.div`flex: 1; overflow-y: auto; padding: .5rem 0;`;
 
 const CartItem = styled.div`
-  display: flex; align-items: center; gap: 10px;
-  padding: .75rem 1.25rem;
+  display: flex; align-items: center; gap: 12px;
+  padding: .875rem 1.5rem;
   border-bottom: 1px solid ${({ theme }) => theme.colors.border};
   &:last-child { border-bottom: none; }
-
-  @media (min-width: 400px) { gap: 12px; }
 `;
 
 const Emoji = styled.div<{ $bg: string }>`
-  width: 42px; height: 42px; border-radius: 8px;
+  width: 50px; height: 50px; border-radius: 10px;
   background: ${({ $bg }) => $bg};
   display: flex; align-items: center; justify-content: center;
-  font-size: 20px; flex-shrink: 0;
-
-  @media (min-width: 400px) { width: 44px; height: 44px; font-size: 22px; }
+  font-size: 26px; flex-shrink: 0;
 `;
 
 const ItemInfo = styled.div`flex: 1; min-width: 0;`;
-
-const ItemName = styled.p`
-  font-size: 13px; font-weight: 500;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-`;
-
-const ItemPrice = styled.p`
-  font-size: 12px; color: ${({ theme }) => theme.colors.muted};
-  font-weight: 300; margin-top: 1px;
-`;
+const ItemName  = styled.p`font-size: 14px; font-weight: 500; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;`;
+const ItemPrice = styled.p`font-size: 13px; color: ${({ theme }) => theme.colors.muted}; font-weight: 300;`;
 
 const Empty = styled.div`
-  padding: 3rem 1.25rem; text-align: center;
-  font-size: 14px; color: ${({ theme }) => theme.colors.muted}; font-weight: 300;
-  line-height: 1.6;
+  padding: 4rem 1.5rem; text-align: center;
+  font-size: 14px; color: ${({ theme }) => theme.colors.muted}; font-weight: 300; line-height: 1.7;
 `;
 
 const Footer = styled.div`
-  padding: 1rem 1.25rem;
+  padding: 1.25rem 1.5rem;
   border-top: 1px solid ${({ theme }) => theme.colors.border};
   flex-shrink: 0;
 `;
 
 const TotalRow = styled.div`
-  display: flex; justify-content: space-between; align-items: center;
-  margin-bottom: .875rem;
+  display: flex; justify-content: space-between; margin-bottom: 1rem;
 `;
 
-const TotalLabel = styled.span`font-size: 13px; color: ${({ theme }) => theme.colors.muted};`;
-const TotalValue = styled.strong`font-size: 18px; font-weight: 500;`;
+const TotalLabel = styled.span`font-size: 14px; color: ${({ theme }) => theme.colors.muted};`;
+const TotalValue = styled.strong`font-size: 20px; font-weight: 500;`;
 
 const WaBtn = styled.a`
-  display: flex; align-items: center; justify-content: center; gap: 8px;
+  display: flex; align-items: center; justify-content: center; gap: 9px;
   width: 100%; padding: 14px;
   border-radius: ${({ theme }) => theme.radii.full};
   background: ${({ theme }) => theme.colors.whatsapp};
   color: #fff; font-size: 15px; font-weight: 500;
-  min-height: 48px;
   transition: opacity .2s;
   &:hover { opacity: .9; }
 `;
 
 const ClearBtn = styled.button`
-  display: block; width: 100%; margin-top: 10px;
-  padding: 11px; border-radius: ${({ theme }) => theme.radii.full};
+  display: block; width: 100%; margin-top: 10px; padding: 11px;
+  border-radius: ${({ theme }) => theme.radii.full};
   border: 1px solid ${({ theme }) => theme.colors.border2};
   font-size: 13px; color: ${({ theme }) => theme.colors.muted};
-  min-height: 44px;
   transition: background .2s;
   &:hover { background: ${({ theme }) => theme.colors.surface2}; }
 `;
 
 interface Props { open: boolean; onClose: () => void; store: Store; }
 
-export default function CartDrawer({ open, onClose, store }: Props) {
+export default function DesktopCartDrawer({ open, onClose, store }: Props) {
   const { items, changeQty, clear, totalPrice, buildWhatsAppMessage } = useCartContext();
   const waUrl = buildWhatsAppMessage(store.name, store.whatsapp);
   const fmt = (n: number) => "R$ " + n.toLocaleString("pt-BR", { minimumFractionDigits: 2 });
@@ -152,12 +112,9 @@ export default function CartDrawer({ open, onClose, store }: Props) {
     <>
       <Overlay $open={open} onClick={onClose} />
       <Drawer $open={open}>
-        <Handle />
         <Header>
-          <HeaderTitle>Meu carrinho</HeaderTitle>
-          <CloseBtn onClick={onClose} aria-label="Fechar">
-            <Icon name="x" size={20} />
-          </CloseBtn>
+          <Title>Carrinho {items.length > 0 && `(${items.reduce((a,i) => a+i.qty,0)})`}</Title>
+          <CloseBtn onClick={onClose}><Icon name="x" size={18} /></CloseBtn>
         </Header>
 
         <ItemsWrap>
@@ -171,11 +128,7 @@ export default function CartDrawer({ open, onClose, store }: Props) {
                   <ItemName>{p.name}</ItemName>
                   <ItemPrice>{fmt(p.price * qty)}</ItemPrice>
                 </ItemInfo>
-                <QtyControl
-                  qty={qty}
-                  onInc={() => changeQty(p.id, qty + 1)}
-                  onDec={() => changeQty(p.id, qty - 1)}
-                />
+                <QtyControl qty={qty} onInc={() => changeQty(p.id, qty+1)} onDec={() => changeQty(p.id, qty-1)} />
               </CartItem>
             ))
           )}
@@ -184,7 +137,7 @@ export default function CartDrawer({ open, onClose, store }: Props) {
         {items.length > 0 && (
           <Footer>
             <TotalRow>
-              <TotalLabel>Total</TotalLabel>
+              <TotalLabel>Total do pedido</TotalLabel>
               <TotalValue>{fmt(totalPrice)}</TotalValue>
             </TotalRow>
             <WaBtn href={waUrl} target="_blank" rel="noreferrer" onClick={onClose}>
