@@ -1,5 +1,5 @@
-// src/components/ui/Icon.tsx
 "use client";
+// src/components/ui/Icon.tsx
 
 const paths: Record<string, React.ReactNode> = {
   search:       <><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></>,

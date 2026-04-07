@@ -1,5 +1,5 @@
-// src/components/catalog/ProductList.tsx
 "use client";
+// src/components/catalog/ProductList.tsx
 import styled from "styled-components";
 import { Product } from "@/lib/types";
 import ProductCard from "./ProductCard";

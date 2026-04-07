@@ -1,5 +1,5 @@
-// src/components/ui/QtyControl.tsx
 "use client";
+// src/components/ui/QtyControl.tsx
 import styled from "styled-components";
 import Icon from "./Icon";
 

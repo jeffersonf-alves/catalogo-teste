@@ -1,5 +1,5 @@
-// src/lib/CartContext.tsx
 "use client";
+// src/lib/CartContext.tsx
 
 import { createContext, useContext } from "react";
 import { useCart } from "@/hooks/useCart";

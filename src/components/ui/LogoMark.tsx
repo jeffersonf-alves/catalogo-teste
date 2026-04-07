@@ -1,5 +1,5 @@
-// src/components/ui/LogoMark.tsx
 "use client";
+// src/components/ui/LogoMark.tsx
 import styled from "styled-components";
 
 const Mark = styled.span<{ $size: number; $fs: number; $r: string }>`

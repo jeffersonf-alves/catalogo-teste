@@ -1,5 +1,5 @@
-// src/lib/ThemeProvider.tsx
 "use client";
+// src/lib/ThemeProvider.tsx
 import { ThemeProvider as SC } from "styled-components";
 import { theme } from "./theme";
 import { GlobalStyles } from "@/styles/GlobalStyles";

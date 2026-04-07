@@ -107,7 +107,7 @@ export default function DesktopProductGrid({ products, slug }: Props) {
               {p.tag && <TagWrap><Badge $variant="ig">{p.tag}</Badge></TagWrap>}
             </ImgWrap>
             <Body>
-              <n>{p.name}</n>
+              <Name>{p.name}</Name>
               <Desc>{p.description}</Desc>
               <PriceRow>
                 <Price>R$ {p.price.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</Price>

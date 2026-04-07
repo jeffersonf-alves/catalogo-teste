@@ -1,5 +1,5 @@
-// src/components/ui/Badge.tsx
 "use client";
+// src/components/ui/Badge.tsx
 import styled, { css } from "styled-components";
 
 type Variant = "success" | "warning" | "danger" | "info" | "ig" | "neutral";

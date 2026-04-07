@@ -1,5 +1,5 @@
-// src/components/layout/StoreFooter.tsx
 "use client";
+// src/components/layout/StoreFooter.tsx
 import styled from "styled-components";
 import LogoMark from "@/components/ui/LogoMark";
 

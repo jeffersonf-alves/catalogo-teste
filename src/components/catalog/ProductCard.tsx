@@ -108,7 +108,7 @@ export default function ProductCard({ product: p, slug }: Props) {
       <Info>
         {p.tag && <Tag><Badge $variant="info">{p.tag}</Badge></Tag>}
         <ProductLink href={`/${slug}/${p.id}`}>
-          <n>{p.name}</n>
+          <Name>{p.name}</Name>
           <Desc>{p.description}</Desc>
         </ProductLink>
         <PriceRow>

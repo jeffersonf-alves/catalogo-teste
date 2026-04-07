@@ -1,5 +1,5 @@
-// src/app/not-found.tsx
 "use client";
+// src/app/not-found.tsx
 import styled from "styled-components";
 import Link from "next/link";
 import LogoMark from "@/components/ui/LogoMark";

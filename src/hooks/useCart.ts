@@ -1,5 +1,5 @@
-// src/hooks/useCart.ts
 "use client";
+// src/hooks/useCart.ts
 
 import { useState, useEffect, useCallback } from "react";
 import { CartItem, Product } from "@/lib/types";
