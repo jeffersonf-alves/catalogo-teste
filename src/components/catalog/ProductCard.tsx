@@ -33,7 +33,7 @@ const Name = styled.p`
   display: -webkit-box; -webkit-line-clamp: 2;
   -webkit-box-orient: vertical; overflow: hidden;
 
-  ${up.xs}  { font-size: 14px; }
+  ${up.xl}  { font-size: 14px; }
 `;
 
 const Desc = styled.p`
@@ -42,7 +42,7 @@ const Desc = styled.p`
   display: -webkit-box; -webkit-line-clamp: 2;
   -webkit-box-orient: vertical; overflow: hidden;
 
-  ${up.xs}  { font-size: 12px; }
+  ${up.xl}  { font-size: 12px; }
   /* hide on very small screens to save space */
   ${down.sm} { display: none; }
 `;
@@ -57,13 +57,13 @@ const Price = styled.span`
   background: ${({ theme }) => theme.gradients.igH};
   -webkit-background-clip: text; -webkit-text-fill-color: transparent;
   background-clip: text;
-  ${up.xs} { font-size: 14px; }
+  ${up.xl} { font-size: 14px; }
 `;
 
 const OldPrice = styled.span`
   font-size: 11px; color: ${({ theme }) => theme.colors.muted};
   text-decoration: line-through;
-  ${up.xs} { font-size: 12px; }
+  ${up.xl} { font-size: 12px; }
 `;
 
 const Right = styled.div`
@@ -77,7 +77,7 @@ const Thumb = styled(Link)<{ $bg: string }>`
   display: flex; align-items: center; justify-content: center;
   font-size: 30px; flex-shrink: 0; text-decoration: none;
 
-  ${up.xs}  { width: 78px; height: 78px; font-size: 34px; }
+  ${up.xl}  { width: 78px; height: 78px; font-size: 34px; }
   ${up.sm}  { width: 82px; height: 82px; font-size: 36px; }
 `;
 
@@ -91,7 +91,7 @@ const AddBtn = styled.button`
   &:active { transform: scale(.88); }
   &:disabled { opacity: .32; cursor: not-allowed; }
 
-  ${up.xs} { width: 34px; height: 34px; }
+  ${up.xl} { width: 34px; height: 34px; }
 `;
 
 const statusVariant = { instock:"success", low:"warning", out:"danger" } as const;
