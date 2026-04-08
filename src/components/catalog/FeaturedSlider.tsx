@@ -41,7 +41,7 @@ const Card = styled.div`
   scroll-snap-align: start;
 
   /* 360px+ */
-  ${up.xs}  { width: 142px; }
+  ${up.xl}  { width: 142px; }
   /* 480px+ */
   ${up.sm}  { width: 155px; }
 `;
@@ -51,7 +51,7 @@ const CardImg = styled.div<{ $bg: string }>`
   display: flex; align-items: center; justify-content: center;
   font-size: 36px; position: relative;
 
-  ${up.xs}  { height: 90px; font-size: 38px; }
+  ${up.xl}  { height: 90px; font-size: 38px; }
   ${up.sm}  { height: 95px; font-size: 40px; }
 `;
 
@@ -65,7 +65,7 @@ const CardBody = styled.div`
 const CardName = styled.p`
   font-size: 12px; font-weight: 500; margin-bottom: 2px;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-  ${up.xs} { font-size: 13px; }
+  ${up.xl} { font-size: 13px; }
 `;
 
 const CardDesc = styled.p`
@@ -82,13 +82,13 @@ const Price = styled.span`
   background: ${({ theme }) => theme.gradients.igH};
   -webkit-background-clip: text; -webkit-text-fill-color: transparent;
   background-clip: text;
-  ${up.xs} { font-size: 14px; }
+  ${up.xl} { font-size: 14px; }
 `;
 
 const OldPrice = styled.span`
   font-size: 10px; color: ${({ theme }) => theme.colors.muted};
   text-decoration: line-through;
-  ${up.xs} { font-size: 11px; }
+  ${up.xl} { font-size: 11px; }
 `;
 
 const AddBtn = styled.button`
@@ -101,7 +101,7 @@ const AddBtn = styled.button`
   min-height: 32px;
   &:hover { opacity: .88; }
   &:disabled { opacity: .38; cursor: not-allowed; }
-  ${up.xs} { font-size: 12px; }
+  ${up.xl} { font-size: 12px; }
 `;
 
 interface Props { products: Product[]; slug: string; }
